@@ -18,12 +18,12 @@ pipeline {
             archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             junit 'target/surefire-reports/*.xml'
             deleteDir()
+        }
 
-            success {
-                slackSend channel: '#jenkins',
-                        color: 'good',
-                        message: "The pipeline ${currentBuild.absoluteUrl} completed successfully."
-            }
+        success {
+            slackSend channel: '#jenkins',
+                    color: 'good',
+                    message: "The pipeline ${currentBuild.absoluteUrl} completed successfully."
         }
 
     }
