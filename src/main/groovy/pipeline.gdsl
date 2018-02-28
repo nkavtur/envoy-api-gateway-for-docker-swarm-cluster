@@ -100,6 +100,8 @@ contributor(closures) {
         method(name: 'resolveScm', type: 'Object', namedParams: [parameter(name: 'source', type: 'Map'), parameter(name: 'targets', type: 'Map'), parameter(name: 'ignoreErrors', type: 'boolean'),], doc: 'Resolves an SCM from an SCM Source and a list of candidate target branch names')
         method(name: 'retry', type: 'Object', params: [count: int, body: 'Closure'], doc: 'Retry the body up to N times')
         method(name: 'script', type: 'Object', params: [body: 'Closure'], doc: 'Run arbitrary Pipeline script')
+        method(name: 'slackSend', type: 'Object', params: [message:'java.lang.String'], doc: 'Send Slack Message')
+        method(name: 'slackSend', type: 'Object', namedParams: [parameter(name: 'message', type: 'java.lang.String'), parameter(name: 'attachments', type: 'java.lang.String'), parameter(name: 'baseUrl', type: 'java.lang.String'), parameter(name: 'botUser', type: 'boolean'), parameter(name: 'channel', type: 'java.lang.String'), parameter(name: 'color', type: 'java.lang.String'), parameter(name: 'failOnError', type: 'boolean'), parameter(name: 'teamDomain', type: 'java.lang.String'), parameter(name: 'token', type: 'java.lang.String'), parameter(name: 'tokenCredentialId', type: 'java.lang.String'), ], doc: 'Send Slack Message')
         method(name: 'sleep', type: 'Object', params: [time: 'int'], doc: 'Sleep')
         method(name: 'sleep', type: 'Object', namedParams: [parameter(name: 'time', type: 'int'), parameter(name: 'unit', type: 'java.util.concurrent.TimeUnit'),], doc: 'Sleep')
         method(name: 'timeout', type: 'Object', params: [time: int, body: 'Closure'], doc: 'Enforce time limit')
