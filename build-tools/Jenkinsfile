@@ -23,7 +23,9 @@ pipeline {
         success {
             slackSend channel: '#jenkins',
                     color: 'good',
-                    message: "The pipeline ${currentBuild.absoluteUrl} completed successfully."
+                    message: "The pipeline ${currentBuild.absoluteUrl} completed successfully.",
+                    teamDomain: 'https://homenkavtur.slack.com/services/hooks/jenkins-ci/',
+                    token: 'A5ty9q073w9JqwFO4aKWi13J'
         }
 
     }
