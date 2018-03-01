@@ -1,0 +1,23 @@
+version: '3'
+services:
+  front-proxy:
+    build:
+      context: ../front-proxy/docker
+      dockerfile: Dockerfile
+    volumes:
+      - ../front-proxy/envoy/:/etc/envoy
+    ports:
+      - 80:80
+      - 9901:9901
+    restart: on-failure
+    networks:
+      - service_mesh
+  service1:
+    build:
+      context: ../service1
+      dockerfile: Dockerfile
+    restart: on-failure
+    networks:
+      - service_mesh
+networks:
+  service_mesh :
