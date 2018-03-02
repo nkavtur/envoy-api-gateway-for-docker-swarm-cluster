@@ -20,13 +20,13 @@ static_resources:
             - name: local_service
               domains: ["*"]
               routes:
-              - match: { prefix: "/service1/" }
+              - match: { prefix: "/service1" }
                 route: { cluster: service1 }
           http_filters:
           - name: envoy.router
   clusters:
   - name: service1
     connect_timeout: 0.25s
-    type: LOGICAL_DNS
+    type: STRICT_DNS
     lb_policy: ROUND_ROBIN
     hosts: [{ socket_address: { address: service1, port_value: 9090 }}]
