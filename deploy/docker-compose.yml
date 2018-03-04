@@ -1,9 +1,7 @@
 version: '3'
 services:
   front-proxy:
-    build:
-      context: ../front-proxy
-      dockerfile: docker/Dockerfile
+    image: front-proxy:latest
     ports:
       - 80:80
       - 9901:9901
@@ -14,31 +12,27 @@ services:
     networks:
       - service_mesh
   service1:
-    build:
-      context: ../service1
-      dockerfile: docker/Dockerfile
-#    deploy:
-#      replicas: 5
-#        restart_policy:
-#          condition: on-failure
-#      resources:
-#        limits:
-#          cpus: "1"
-#          memory: 500M
+    image: service1:latest
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1"
+          memory: 500M
     networks:
       - service_mesh
   service2:
-    build:
-      context: ../service2
-      dockerfile: docker/Dockerfile
-#    deploy:
-#      replicas: 5
-#        restart_policy:
-#          condition: on-failure
-#      resources:
-#        limits:
-#          cpus: "1"
-#          memory: 500M
+    image: service2:latest
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1"
+          memory: 500M
     networks:
       - service_mesh
 networks:
