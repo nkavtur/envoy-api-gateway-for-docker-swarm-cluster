@@ -13,6 +13,7 @@
 	<modules>
 		<module>front-proxy</module>
 		<module>service1</module>
+		<module>service2</module>
 	</modules>
 
 	<parent>

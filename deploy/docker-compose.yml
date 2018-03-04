@@ -7,14 +7,38 @@ services:
     ports:
       - 80:80
       - 9901:9901
-    restart: on-failure
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
     networks:
       - service_mesh
   service1:
     build:
       context: ../service1
       dockerfile: docker/Dockerfile
-    restart: on-failure
+#    deploy:
+#      replicas: 5
+#        restart_policy:
+#          condition: on-failure
+#      resources:
+#        limits:
+#          cpus: "1"
+#          memory: 500M
+    networks:
+      - service_mesh
+  service2:
+    build:
+      context: ../service2
+      dockerfile: docker/Dockerfile
+#    deploy:
+#      replicas: 5
+#        restart_policy:
+#          condition: on-failure
+#      resources:
+#        limits:
+#          cpus: "1"
+#          memory: 500M
     networks:
       - service_mesh
 networks:

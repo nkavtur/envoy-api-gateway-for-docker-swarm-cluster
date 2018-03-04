@@ -22,11 +22,18 @@ static_resources:
               routes:
               - match: { prefix: "/service1" }
                 route: { cluster: service1 }
+              - match: {prefix: "/service2" }
+                route: {cluster: service2}
           http_filters:
           - name: envoy.router
   clusters:
   - name: service1
     connect_timeout: 0.25s
-    type: STRICT_DNS
-    lb_policy: ROUND_ROBIN
+    type: strict_dns
+    lb_policy: round_robin
     hosts: [{ socket_address: { address: service1, port_value: 9090 }}]
+  - name: service2
+    connect_timeout: 0.25s
+    type: strict_dns
+    lb_policy: round_robin
+    hosts: [{socket_address: {address: service2, port_value: 9090 }}]
