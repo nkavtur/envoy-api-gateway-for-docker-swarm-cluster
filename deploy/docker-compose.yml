@@ -1,7 +1,7 @@
 version: '3'
 services:
   front-proxy:
-    image: front-proxy:latest
+    image: nkavtur/front-proxy:latest
     ports:
       - 80:80
       - 9901:9901
@@ -12,9 +12,9 @@ services:
     networks:
       - service_mesh
   service1:
-    image: service1:latest
+    image: nkavtur/service1:latest
     deploy:
-      replicas: 2
+      replicas: 3
       restart_policy:
         condition: on-failure
       resources:
@@ -24,9 +24,9 @@ services:
     networks:
       - service_mesh
   service2:
-    image: service2:latest
+    image: nkavtur/service2:latest
     deploy:
-      replicas: 2
+      replicas: 3
       restart_policy:
         condition: on-failure
       resources:

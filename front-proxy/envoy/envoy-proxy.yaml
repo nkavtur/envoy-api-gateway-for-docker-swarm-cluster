@@ -35,5 +35,5 @@ static_resources:
   - name: service2
     connect_timeout: 0.25s
     type: strict_dns
-    lb_policy: round_robin
+    lb_policy: LEAST_REQUEST
     hosts: [{socket_address: {address: service2, port_value: 9090 }}]
