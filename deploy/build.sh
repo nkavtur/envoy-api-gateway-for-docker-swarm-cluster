@@ -10,7 +10,7 @@ docker push nkavtur/front-proxy:latest
 echo "Building image service1:latest ..."
 cd ../service1
 docker build -t service1 -f docker/Dockerfile .
-docker tag service1:latest nkavtur/service1:latest
+docker tag service1 nkavtur/service1:latest
 docker push nkavtur/service1:latest
 
 echo "Building image service2:latest ..."

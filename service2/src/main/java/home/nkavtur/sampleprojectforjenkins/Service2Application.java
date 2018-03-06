@@ -23,6 +23,7 @@ public class Service2Application {
 	@GetMapping(value = "/who-am-i", produces = APPLICATION_JSON_VALUE)
 	@SneakyThrows
 	public String whoAmI(HttpServletRequest request) {
+		System.out.println(" I SERVICE2 AM HERE!");
 		return String.format("%s %s", request.getContextPath(), InetAddress.getLocalHost().toString());
 	}
 }
