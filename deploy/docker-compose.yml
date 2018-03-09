@@ -15,7 +15,6 @@ services:
     image: nkavtur/service1:latest
     deploy:
       replicas: 3
-      endpoint_mode: dnsrr
       restart_policy:
         condition: on-failure
       resources:
@@ -28,7 +27,6 @@ services:
     image: nkavtur/service2:latest
     deploy:
       replicas: 3
-      endpoint_mode: dnsrr
       restart_policy:
         condition: on-failure
       resources:
