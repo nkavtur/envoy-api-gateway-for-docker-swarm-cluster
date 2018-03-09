@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 services:
   front-proxy:
     image: nkavtur/front-proxy:latest
@@ -15,6 +15,7 @@ services:
     image: nkavtur/service1:latest
     deploy:
       replicas: 3
+      endpoint_mode: dnsrr
       restart_policy:
         condition: on-failure
       resources:
@@ -27,6 +28,7 @@ services:
     image: nkavtur/service2:latest
     deploy:
       replicas: 3
+      endpoint_mode: dnsrr
       restart_policy:
         condition: on-failure
       resources:
@@ -36,4 +38,6 @@ services:
     networks:
       - service_mesh
 networks:
-  service_mesh :
+  service_mesh:
+    driver: overlay
+    attachable: true
