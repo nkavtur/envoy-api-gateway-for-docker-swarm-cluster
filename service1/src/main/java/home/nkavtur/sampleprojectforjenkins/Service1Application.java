@@ -20,12 +20,11 @@ public class Service1Application {
 		SpringApplication.run(Service1Application.class, args);
 	}
 
-	private RestTemplate restTemplate;
+	private RestTemplate restTemplate = new RestTemplate();
 
 	@GetMapping(value = "/call-service2", produces = APPLICATION_JSON_VALUE)
 	@SneakyThrows
 	public String callService2() {
-		restTemplate = new RestTemplate();
 		return restTemplate.getForObject("http://service2:9090/service2/who-am-i", String.class);
 	}
 
