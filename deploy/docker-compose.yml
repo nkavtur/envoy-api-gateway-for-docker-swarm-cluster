@@ -9,6 +9,8 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
+    configs:
+      - envoy.yaml
     networks:
       - service_mesh
   service1:
@@ -39,3 +41,6 @@ networks:
   service_mesh:
     driver: overlay
     attachable: true
+configs:
+  envoy.yaml:
+    file: ../front-proxy/envoy/envoy-proxy.yaml
