@@ -23,6 +23,8 @@ services:
         limits:
           cpus: "1"
           memory: 500M
+    secrets:
+      - service1-application.yml
     networks:
       - service_mesh
   service2:
@@ -35,6 +37,8 @@ services:
         limits:
           cpus: "1"
           memory: 500M
+    secrets:
+      - service2-application.yml
     networks:
       - service_mesh
 networks:
@@ -44,3 +48,8 @@ networks:
 configs:
   envoy.yaml:
     file: ../front-proxy/envoy/envoy-proxy.yaml
+secrets:
+  service1-application.yml:
+    file: ../service1/src/main/resources/application.yaml
+  service2-application.yml:
+    file: ../service2/src/main/resources/application.yaml
