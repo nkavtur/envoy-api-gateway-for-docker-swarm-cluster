@@ -15,6 +15,8 @@ services:
       - service_mesh
   service1:
     image: nkavtur/service1:latest
+    environment:
+      SPRING_CONFIG_LOCATION: /run/secrets/
     deploy:
       replicas: 3
       restart_policy:
@@ -24,13 +26,16 @@ services:
           cpus: "1"
           memory: 500M
     secrets:
-      - service1-application.yml
+      - source: service1-application.yml
+        target: application.yml
     networks:
       - service_mesh
   service2:
     image: nkavtur/service2:latest
+    environment:
+      SPRING_CONFIG_LOCATION: /run/secrets/
     deploy:
-      replicas: 3
+      replicas: 1
       restart_policy:
         condition: on-failure
       resources:
@@ -38,7 +43,8 @@ services:
           cpus: "1"
           memory: 500M
     secrets:
-      - service2-application.yml
+      - source: service2-application.yml
+        target: application.yml
     networks:
       - service_mesh
 networks:
@@ -50,6 +56,6 @@ configs:
     file: ../front-proxy/envoy/envoy-proxy.yaml
 secrets:
   service1-application.yml:
-    file: ../service1/src/main/resources/application.yaml
+    file: ../service1/src/main/resources/application.yml
   service2-application.yml:
-    file: ../service2/src/main/resources/application.yaml
+    file: ../service2/src/main/resources/application.yml
