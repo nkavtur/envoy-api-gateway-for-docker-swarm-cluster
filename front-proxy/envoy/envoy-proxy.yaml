@@ -26,18 +26,20 @@ static_resources:
                 route: {cluster: service2}
           http_filters:
           - name: envoy.router
+          - name: envoy.health_check
+            config:
+              pass_through_mode: false
+              endpoint: healthcheck
   clusters:
   - name: service1
     connect_timeout: 0.25s
     type: STRICT_DNS
     dns_refresh_rate: 1s
     max_requests_per_connection: 1
-#    lb_policy: ROUND_ROBIN
     hosts: [{ socket_address: { address: service1, port_value: 9090 }}]
   - name: service2
     connect_timeout: 0.25s
     type: STRICT_DNS
     dns_refresh_rate: 1s
     max_requests_per_connection: 1
-#    lb_policy: ROUND_ROBIN
     hosts: [{socket_address: {address: service2, port_value: 9090 }}]
