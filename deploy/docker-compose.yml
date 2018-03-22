@@ -35,7 +35,7 @@ services:
     environment:
       SPRING_CONFIG_LOCATION: /run/secrets/
     deploy:
-      replicas: 1
+      replicas: 3
       restart_policy:
         condition: on-failure
       resources:
