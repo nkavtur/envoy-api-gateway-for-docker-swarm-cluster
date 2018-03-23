@@ -18,6 +18,7 @@ services:
     environment:
       SPRING_CONFIG_LOCATION: /run/secrets/
     deploy:
+      endpoint_mode: dnsrr
       replicas: 3
       restart_policy:
         condition: on-failure
@@ -35,6 +36,7 @@ services:
     environment:
       SPRING_CONFIG_LOCATION: /run/secrets/
     deploy:
+      endpoint_mode: dnsrr
       replicas: 3
       restart_policy:
         condition: on-failure
